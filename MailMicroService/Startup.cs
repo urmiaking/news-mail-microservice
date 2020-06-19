@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using MailMicroService.Data;
+using MailMicroService.Services;
 using Microsoft.OpenApi.Models;
 
 namespace MailMicroService
@@ -40,6 +41,8 @@ namespace MailMicroService
                     Description = "The Mail Management Microservice HTTP API. This is a Data-Driven/CRUD microservice"
                 });
             });
+
+            services.AddScoped<IMailRepository, MailRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -61,7 +64,7 @@ namespace MailMicroService
             app.UseSwagger()
                 .UseSwaggerUI(c =>
                 {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Users API V1");
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Mail API V1");
                 });
         }
     }

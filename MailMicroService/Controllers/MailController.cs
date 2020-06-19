@@ -25,7 +25,7 @@ namespace MailMicroService.Controllers
         {
             var isSent = await _mailRepository.SendEmail(mail);
 
-            if (isSent)
+            if (!isSent)
             {
                 return StatusCode(500);
             }
